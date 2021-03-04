@@ -18,9 +18,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
+import LoginPage from '../../page/LoginPage/LoginPage';
 
 const drawerWidth = 240;
-
+const contentShift = 60;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -67,14 +68,14 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+    marginLeft: -drawerWidth+contentShift,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0,
+    marginLeft: contentShift,
   },
 }));
 
@@ -133,7 +134,7 @@ export default function PersistentDrawerLeft() {
         </div>
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+          {['Login','Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem button key={text} component={Link} to={"/" + text}>
               <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
               <ListItemText primary={text} />
@@ -148,9 +149,10 @@ export default function PersistentDrawerLeft() {
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.drawerHeader} />
+        <div className={classes.drawerHeader}/>
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route path="/Login" component={LoginPage}/>
             <Route path="/inbox" component={Home} />
             <Route path="/Starred" component={Starred} />
           </Switch>
