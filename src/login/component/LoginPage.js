@@ -22,7 +22,7 @@ import Button from '@material-ui/core/Button';
 import MailIcon from '@material-ui/icons/Mail';
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import LoginPage from '../../page/LoginPage/LoginPage';
-
+import TodoList from './Todo'
 const drawerWidth = 240;
 const contentShift = 20;
 const useStyles = makeStyles((theme) => ({
@@ -162,7 +162,7 @@ export default function PersistentDrawerLeft() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/Login" component={LoginPage} />
-            <Route path="/inbox" component={Home} />
+            <Route path="/inbox" component={TodoList} />
             <Route path="/Starred" component={Starred} />
           </Switch>
 
